@@ -11,22 +11,23 @@ How To
 
 Install bikes package:
 
-- cd cosc-288-bikes
-- pip install -r requirements_dev.txt 
-- python setup.py install
-
-Run:
-
-Create your own script:
-
-.. code-block
-
-    raw_data = "-t example_file.mff"
-    testset = TrainTestSet(raw_data)
-    print(testset)
+```bash
+cd cosc-288-bikes
+pip install -r requirements_dev.txt 
+python setup.py install
+```
 
 Run from command line:
 
-.. code-block
+```bash 
+bikes -t dest/to/file
+```
 
-    bikes -t dest/to/file
+Create own script
+
+```python
+raw_data = "-t example_file.mff"
+testset = TrainTestSet(raw_data)
+print(testset)
+```
+
