@@ -28,7 +28,16 @@ class Attributes(object):
 
     def __getitem__(self, val):
         """Allow for indexing."""
+        if type(val) is str:
+            return self.attributes.index(val)
         return self.attributes[val]
+
+    def __str__(self):
+        """String representation of Attributes."""
+        string = ""
+        for a in self.attributes:
+            string = string + str(a) + "\n"
+        return string
 
     @property
     def size(self):
@@ -68,6 +77,15 @@ class Attributes(object):
             e = "Line is not an attribute."
             raise exceptions.LogicError(e)
 
+    def _parse_numeric_attribute(self, attributes):
+        if len(attributes) != 3:
+            e = "Numeric attribute w/ incorrect num of args (%s != 3)." % len(attributes)
+            raise exceptions.LogicError(e)
+        attribute = NumericAttribute(name=attributes[1])
+        if not self.has_numeric_attribute:
+            self._has_numeric_attribute = True
+        return attribute
+
     def _parse_nominal_attribute(self, attributes):
         if len(attributes) < 2:
             e = "Nominal attribute with no domain."
@@ -79,8 +97,20 @@ class Attributes(object):
             self._has_nominal_attribute = True
         return attribute
 
-    def _parse_numeric_attribute(self, attributes):
-        attribute = NumericAttribute(name=attributes[1])
-        if not self.has_numeric_attribute:
-            self._has_numeric_attribute = True
-        return attribute
+
+class AttributeFactory(object):
+    """Processes a single attribute declaration."""
+
+    attributes = Attributes()
+
+    def make(self, line):
+        """Process line into attributes."""
+        self.attributes.parse(line)
+
+    def __iter__(self):
+        """Make iterable."""
+        return iter(self.attributes)
+
+    def __getitem__(self, val):
+        """Allow for indexing."""
+        return self.attributes[val]

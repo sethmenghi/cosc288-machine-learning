@@ -2,31 +2,31 @@
 cosc-288-bikes
 ===============================
 
-.. image:: https://img.shields.io/pypi/v/cosc-288-bikes.svg
-        :target: https://pypi.python.org/pypi/cosc-288-bikes
-
-.. image:: https://img.shields.io/travis/sethmenghi/cosc-288-bikes.svg
-        :target: https://travis-ci.org/sethmenghi/cosc-288-bikes
-
-.. image:: https://readthedocs.org/projects/cosc-288-bikes/badge/?version=latest
-        :target: https://readthedocs.org/projects/cosc-288-bikes/?badge=latest
-        :alt: Documentation Status
-
-
 Machine learning  project written for COSC-288 Machine Learning. 
 
-* Free software: ISC license
 * Documentation: https://cosc-288-bikes.readthedocs.org.
 
-Features
+How To
 --------
 
-* TODO
+Install bikes package:
 
-Credits
----------
+- cd cosc-288-bikes
+- pip install -r requirements_dev.txt 
+- python setup.py install
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+Run:
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+Create your own script:
+
+.. code-block
+
+    raw_data = "-t example_file.mff"
+    testset = TrainTestSet(raw_data)
+    print(testset)
+
+Run from command line:
+
+.. code-block
+
+    bikes -t dest/to/file

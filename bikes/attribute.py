@@ -17,7 +17,7 @@ class Attribute(object):
     """Stores information for an attribute."""
 
     domain = []
-    attribute_type = None
+    _type = None
 
     def __init__(self, name=None):
         """Constructor for the Attribute object.
@@ -27,6 +27,7 @@ class Attribute(object):
             default=None
         """
         self._name = name
+        self.domain = []
 
     @property
     def name(self):
@@ -38,9 +39,20 @@ class Attribute(object):
         """Set the name attribute to `name`."""
         self._name = name
 
+    @property
+    def type(self):
+        """Return attribute type."""
+        return self._type
+
     def __str__(self):
         """The string repr. of an Attribute is it's name."""
-        return self.name
+        string = "@attribute %s" % self.name
+        if self.type == 'Nominal':
+            for v in self.domain:
+                string = string + " %s" % v
+        elif self.type == 'Numeric':
+            string = string + " %s" % 'numeric'
+        return string
 
     def __repr__(self):
         """Representation of the object."""
@@ -50,7 +62,8 @@ class Attribute(object):
 class NominalAttribute(Attribute):
     """An attribute with nominal representation."""
 
-    attribute_type = 'Nominal'
+    _type = 'Nominal'
+    domain = []
 
     @property
     def size(self):
@@ -87,5 +100,6 @@ class NumericAttribute(Attribute):
     A numeric attribute has a name. Its domain is the real numbers.
     """
 
-    attribute_type = 'Numeric'
+    _type = 'Numeric'
+    domain = ['numeric']
     pass

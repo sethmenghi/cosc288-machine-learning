@@ -23,18 +23,18 @@ test_requirements = [
 ]
 
 setup(
-    name='cosc-288-bikes',
+    name='bikes',
     version='0.1.0',
     description="Machine learning  project written for COSC-288 Machine Learning. ",
     long_description=readme + '\n\n' + history,
     author="Seth Menghi",
     author_email='sethmenghi@gmail.com',
-    url='https://github.com/sethmenghi/cosc-288-bikes',
+    url='https://github.com/sethmenghi/bikes',
     packages=[
-        'cosc-288-bikes',
+        'bikes',
     ],
-    package_dir={'cosc-288-bikes':
-                 'cosc-288-bikes'},
+    package_dir={'bikes':
+                 'bikes'},
     include_package_data=True,
     install_requires=requirements,
     license="ISCL",
@@ -53,6 +53,7 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
     ],
+    scripts=['bin/bikes'],
     test_suite='tests',
     tests_require=test_requirements
 )
